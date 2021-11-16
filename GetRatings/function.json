@@ -13,6 +13,14 @@
       "type": "http",
       "direction": "out",
       "name": "res"
+    },
+    {
+      "type": "cosmosDB",
+      "name": "ratings",
+      "databaseName": "ratingsdb003",
+      "collectionName": "ContainerRatings",
+      "direction":"in",
+      "connectionStringSetting": "KVSecretCosmosDB"
     }
   ]
 }
