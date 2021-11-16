@@ -9,7 +9,7 @@ on:
       ref:
         description: 'Commit ID'
         required: true
-        default: 'HEAD'
+        default: 'main'
 
 env:
   AZURE_WEBAPP_NAME: RatingsFnApp
