@@ -6,15 +6,13 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 env:
   AZURE_WEBAPP_NAME: RatingsFnApp
   AZURE_WEBAPP_PACKAGE_PATH: '.'
   NODE_VERSION: '14.x'
-  DEPLOYMENT_SECRET: 'AZURE_WEBAPP_PUBLISH_PROFILE_STAGING'
-  SLOT_NAME: 'staging'
+  DEPLOYMENT_SECRET: 'AZURE_WEBAPP_PUBLISH_PROFILE'
+  SLOT_NAME: ''
 
 jobs:
   build:
