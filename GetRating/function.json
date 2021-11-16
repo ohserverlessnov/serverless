@@ -20,7 +20,7 @@
       "name": "rating",
       "databaseName": "ratings",
       "collectionName": "ContainerRatings2",
-      "connectionStringSetting": "CosmosDBConnection",
+      "connectionStringSetting": "KVSecretCosmosDB",
       "direction": "in",
    
       "Id": "{Query.id}",

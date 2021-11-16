@@ -1,3 +1,4 @@
+let appInsights = require('applicationinsights');
 module.exports = async function (context, req, rating) {
     context.log('GetRating called ');
     
@@ -32,6 +33,8 @@ module.exports = async function (context, req, rating) {
             };
         }  
     } catch (e) {
+        context.log("Found Rating item, Description=" + rating);
+
         let error = {
             error: 'UNHANDLED_ERROR',
             message: e
