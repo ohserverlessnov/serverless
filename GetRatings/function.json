@@ -15,12 +15,12 @@
       "name": "res"
     },
     {
+      "name": "ratingDocument",
       "type": "cosmosDB",
-      "name": "ratings",
-      "databaseName": "ratingsdb003",
+      "databaseName": "ratings",
       "collectionName": "ContainerRatings",
-      "direction":"in",
-      "connectionStringSetting": "KVSecretCosmosDB"
+      "connectionStringSetting": "KVSecretCosmosDB",
+      "direction": "in"
     }
   ]
 }

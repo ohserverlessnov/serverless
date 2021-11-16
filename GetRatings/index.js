@@ -4,19 +4,26 @@ module.exports = async function (context, req) {
     const userID = req.query.userId;
     const documents = context.bindings.ratings;
 
-    if(userID){
-        documents.map(document => {
-            if(document.userId === userID){
-                return document;
-            }
-        });
+    try {
+        if(userID){
+            documents.map(document => {
+                if(document.userId === userID){
+                    return document;
+                }
+            });
 
+            context.res = {
+                body: documents
+            };
+        }else {
+            context.res = {
+                body: `No details found for given userId: ${userID} !`
+            }
+        }
+    } catch (err) {
+        context.log(err);
         context.res = {
-            body: documents
-        };
-    }else {
-        context.res = {
-            body: `No details found for given userId: ${userID} !`
+            body: 'Something wrong happend with your request :('
         }
     }
 
