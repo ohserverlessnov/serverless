@@ -2,7 +2,7 @@ module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
 
     const userID = req.query.userId;
-    const documents = context.bindings.ratings;
+    const documents = context.bindings.ratingDocument;
 
     try {
         if(userID){
