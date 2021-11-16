@@ -6,13 +6,13 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 env:
   AZURE_WEBAPP_NAME: RatingsFnApp
   AZURE_WEBAPP_PACKAGE_PATH: '.'
   NODE_VERSION: '14.x'
-  DEPLOYMENT_SECRET: 'AZURE_WEBAPP_PUBLISH_PROFILE'
-  SLOT_NAME: ''
 
 jobs:
   build:
@@ -30,10 +30,20 @@ jobs:
     - run: npm run build --if-present
     - run: npm test --if-present
 
-    - name: 'Deploy to Azure WebApp'
+    - name: 'Deploy to Azure WebApp Staging Slot'
+      if: (github.event_name == 'pull_request' && github.event.action != 'closed')
       uses: Azure/functions-action@v1.4.4
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets[env.DEPLOYMENT_SECRET] }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_STAGING }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-        slot-name: ${{ env.SLOT_NAME }}
+        slot-name: 'staging'
+
+    - name: 'Deploy to Azure WebApp'
+      if: (github.event_name == 'push')
+      uses: Azure/functions-action@v1.4.4
+      with: 
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        slot-name: ''
