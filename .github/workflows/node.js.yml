@@ -11,9 +11,10 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: RatingsFnApp
-  AZURE_WEBAPP_PACKAGE_PATH: './'
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
   NODE_VERSION: '14.x'
   DEPLOYMENT_SECRET: 'AZURE_WEBAPP_PUBLISH_PROFILE_STAGING'
+  SLOT_NAME: 'staging'
 
 jobs:
   build:
@@ -32,8 +33,9 @@ jobs:
     - run: npm test --if-present
 
     - name: 'Deploy to Azure WebApp'
-      uses: azure/webapps-deploy@v2
+      uses: Azure/functions-action@v1.4.4
       with: 
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets[env.DEPLOYMENT_SECRET] }}
         package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        slot-name: ${{ env.SLOT_NAME }}
