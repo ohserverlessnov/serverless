@@ -65,9 +65,8 @@ module.exports = async function (context, req) {
     
     
         context.res = {
-            // status: 200, /* Defaults to 200 */
-            body: "Thank you for your rating"
-        };
+            body: context.bindings.ratingDocument
+        }
     
         context.done()
 
