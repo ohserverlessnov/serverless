@@ -1,10 +1,20 @@
 {
   "bindings": [
     {
+      "name": "ratingDocument",
+      "type": "cosmosDB",
+      "databaseName": "ratings",
+      "collectionName": "ContainerRatings",
+      "createIfNotExists": true,
+      "connectionStringSetting": "KVSecretCosmosDB",
+      "direction": "out"
+    },
+    {
       "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
       "name": "req",
+      "dataType": "string",
       "methods": [
         "post"
       ]
