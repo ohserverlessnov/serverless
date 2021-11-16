@@ -1,4 +1,3 @@
-const response_def = ['userId', 'productId', 'locationName', 'rating', 'userNotes']
 module.exports = async function (context, req, rating) {
     context.log('GetRating called ');
     
@@ -43,7 +42,5 @@ module.exports = async function (context, req, rating) {
         };
      
     }
- 
-    
     context.done();
 }
