@@ -1,17 +1,41 @@
-module.exports = async function (context, req, ratingsdb003) {
-    context.log('JavaScript HTTP trigger function processed a request.');
-    //ratingsdb003 = context.bindings.ratingsdb003
-    context.log('JavaScript queue trigger function processed work item');
+module.exports = async function (context, req, rating) {
+    context.log('GetRating called ');
+    
+    var ratingid  = req.query.id 
+    try {
+        if (!rating)
+        {
+            context.log("rating  item not found for id="+ratingid);
+            let notfound = {
+                error: 'NOT_FOUND',
+                message: "Rating with id not found"+ratingid
 
-
-    if (ratingsdb003)
-    {
-        context.log("ToDo item not found");
+              };
+            context.res = {
+                status: 404,
+                body: JSON.stringify(notfound)
+            };
+        }
+        else
+        {
+            context.log("Found Rating item, Description=" + rating);
+            context.res = {
+                status: 200,
+                body: rating
+            };
+        }  
+    } catch (e) {
+        let error = {
+            error: 'UNHANDLED_ERROR',
+            message: e
+          };
+        context.res = {
+            status: 500,
+            body: JSON.stringify(error)
+        };
+     
     }
-    else
-    {
-        context.log("Found ToDo item, Description=" + ratingsdb003);
-    }
+ 
     
     context.done();
 }

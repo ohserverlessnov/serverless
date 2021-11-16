@@ -13,11 +13,11 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "res"
     },
     {
       "type": "cosmosDB",
-      "name": "ratingsdb003",
+      "name": "rating",
       "databaseName": "ratings",
       "collectionName": "ContainerRatings2",
       "connectionStringSetting": "CosmosDBConnection",
