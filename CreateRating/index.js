@@ -25,7 +25,7 @@ const fetch = async function (context, url) {
                 }
             })
         }).on('error', (e) => {
-            console.error(`server_fetch: ${e.message}`)
+            context.log(`server_fetch: ${e.message}`)
             reject(e.message)
         })
         req.end()
@@ -43,21 +43,24 @@ module.exports = async function (context, req) {
         const jsonBody = body
         //const jsonBody = JSON.parse(body)
 
+        context.log(`1`)
         if (Object.keys(jsonBody).length !== 5) {
             throw "Invalid Rating, not the right number of properties"
         }
+        context.log(`2`)
         if (!required_props.reduce((a, v) => a && jsonBody.hasOwnProperty(v), true)) {
             throw "Invalid Rating, required properties not present"
         }
 
+        context.log(`3`)
         if (isNaN(jsonBody.rating) || jsonBody.rating < 0 ||  jsonBody.rating > 5) {
             throw "Invalid Rating, needs to be betwwen 0 & 5"
         }
-
+        context.log(`4`)
         const user = await fetch(context, `https://serverlessohapi.azurewebsites.net/api/GetUser?userId=${jsonBody.userId}`)
-
+        context.log(`5`)
         const product = await fetch(context, `https://serverlessohapi.azurewebsites.net/api/GetProduct?productId=${jsonBody.productId}`)
-
+        context.log(`6`)
         context.bindings.ratingDocument = JSON.stringify({
             ...jsonBody,
             timestamp: new Date,
