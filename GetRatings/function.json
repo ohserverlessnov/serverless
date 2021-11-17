@@ -18,7 +18,7 @@
       "name": "ratingDocument",
       "type": "cosmosDB",
       "databaseName": "ratings",
-      "collectionName": "ContainerRatings",
+      "collectionName": "ContainerRatings2",
       "connectionStringSetting": "KVSecretCosmosDB",
       "direction": "in"
     }
