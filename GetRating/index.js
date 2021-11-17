@@ -1,4 +1,3 @@
-let appInsights = require('applicationinsights');
 module.exports = async function (context, req, rating) {
     context.log('GetRating called ');
     
