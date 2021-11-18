@@ -4,7 +4,13 @@ module.exports = async function (context, eventHubMessages) {
     // go through every message
     context.bindings.posData = [];
     eventHubMessages.forEach((salesItem, index) => {
-        context.log(JSON.stringify(salesItem));
-        context.bindings.posData.push(JSON.stringify(salesItem));
+        context.log(`Processed Item ${index}\n${JSON.stringify(salesItem)}`);
+        
+        // Convert each sales item to a document, indexed by the salesNumber
+        context.bindings.posData.push({
+            ...salesItem,
+            id: salesItem.header.salesNumber
+        });
     });
+    context.done();
 };
