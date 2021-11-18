@@ -5,7 +5,7 @@
       "name": "eventHubMessages",
       "direction": "in",
       "eventHubName": "possaleseventshub",
-      "connection": "possalesevents_possalespolicy_EVENTHUB",
+      "connectionStringSetting": "KVEHConnString",
       "cardinality": "many",
       "consumerGroup": "$Default"
     },
