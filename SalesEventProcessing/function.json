@@ -1,0 +1,22 @@
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventHubMessages",
+      "direction": "in",
+      "eventHubName": "possaleseventshub",
+      "connection": "possalesevents_possalespolicy_EVENTHUB",
+      "cardinality": "many",
+      "consumerGroup": "$Default"
+    },
+    {
+      "name": "posData",
+      "type": "cosmosDB",
+      "databaseName": "possalesevents",
+      "collectionName": "possales",
+      "createIfNotExists": true,
+      "connectionStringSetting": "KVSecretCosmosDB",
+      "direction": "out"
+    }
+  ]
+}
