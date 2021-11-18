@@ -17,6 +17,13 @@
       "createIfNotExists": true,
       "connectionStringSetting": "KVSecretCosmosDB",
       "direction": "out"
-    }
+    },
+    {
+      "name": "posDataSB",
+      "type": "serviceBus",
+      "topicName": "sales",
+      "connection": "KVSBConnString",
+      "direction": "out"
+  }
   ]
 }
