@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "eventHubMessages",
+      "direction": "in",
+      "eventHubName": "salesitems",
+      "connection": "FUNCTIONS_WORKER_RUNTIME",
+      "cardinality": "many",
+      "consumerGroup": "$Default"
+    }
+  ]
+}
